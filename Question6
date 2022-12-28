@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+class queue{
+private:
+#define n   100
+    int data[n];
+    int front = -1;
+    int rear = -1;
+public:
+    bool is_empty(){
+        return(front == -1 && rear == -1);
+    }
+    void push ( int element )
+    {
+        if (rear == n-1)
+            cout<<"Overload! \n";
+        else
+        {
+            if( front == -1)
+                front = 0;
+            rear++;
+            data[rear] = element;
+        }
+    }
+    void pop ( )
+    {
+        if( is_empty() )
+            cout<<"Queue is empty cannot pop anything\n";
+        else
+        if( front == rear )
+            front = rear = -1;
+        else
+            front++;
+    }
+    bool is_exist(int element){
+        for (int i = front; i <= rear; i++)
+        {
+            if (data[i] == element)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    void clear(){
+        front = rear = -1;
+    }
+    void display(){
+        if(is_empty())
+            cout<<"Queue is empty cannot display anything\n";
+        else{
+            for( int i = front ; i <= rear ; i++)
+                cout << data[i]<<" ";
+            cout<< "\n";
+        }
+    }// I will use it to check in main
+};
+int main(){
+    queue q;
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    q.display();
+    cout << q.is_exist(1) << endl;
+    q.pop();
+    q.display();
+    cout << q.is_exist(1) << endl;
+    q.clear();
+    q.display();
+    return 0;
+}
