@@ -1,0 +1,36 @@
+(a)
+Person&Taller (Person x, Person y){
+    return (x.height > y.height ? x : y)
+}
+-------------------sol.
+Person Taller(Person x, Person y){
+    return (x.height > y.height ? x : y);
+}
+----------------------------------------------------------------------------------
+(b)
+Employee test(Employee *p){
+    Embloyee obj;
+    obj.Age = p.Age;
+    \\ Age is a member element in the class Employee
+    ...
+    return obj;
+}
+-------------------sol.
+Employee test(Employee *p){
+    Employee obj;
+    obj.Age = p->Age;
+    return obj;
+}
+----------------------------------------------------------------------------------
+(c)
+Document *Backup(Document *d){
+    Document obj;
+    obj = *d;
+    return &obj;
+}
+-------------------sol.
+Document* Backup(Document *d){
+    Document *obj;
+    obj = d;
+    return obj;
+}
