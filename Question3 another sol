@@ -1,0 +1,21 @@
+// sol using shifting
+#include<iostream>
+#include <bitset>
+#include<windows.h>
+using namespace std;
+int main(){
+    int x1 = 0x0;  int x2 = 0x0;
+    cout << bitset<5>(x1) << bitset<5>(x2) << endl;
+    Sleep(10000);
+    while(true){
+        x1 = 0x10;  x2 = 0x1;
+        cout << bitset<5>(x1) << bitset<5>(x2) << endl;
+        Sleep(10000);
+        while (x1 && x2) {
+            x1 >>= 1;
+            x2 <<= 1;
+            cout << bitset<5>(x1) << bitset<5>(x2) << endl;
+            Sleep(10000);
+        }
+    }
+}
