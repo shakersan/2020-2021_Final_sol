@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+class Engineer{
+private:
+#define ma_x    100
+    int id;
+    char name[ma_x];
+    char phone[ma_x];
+    int salary;
+    char specialization[ma_x];
+public:
+    void set_salary(int sal){
+        salary = sal;
+    }
+    int get_salary(){
+        return salary;
+    }
+    // I created this functions to set the salary field
+    // and check the function "increase_salary" in main.
+    void increse_salary(){
+        if (salary <= 1000){
+            salary += 15*salary / 100;
+        }else if (salary <= 2000){
+            salary += 10*salary / 100;
+        }
+    }
+};
+int main(){
+    Engineer eng1;
+    eng1.set_salary(2000);
+    eng1.increse_salary();
+    cout << eng1.get_salary();
+}
