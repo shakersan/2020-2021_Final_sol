@@ -1,0 +1,14 @@
+#include<iostream>
+using namespace std;
+class Assistant{
+private:
+#define ma_x    100
+    int id;
+    char name[ma_x];
+    char address[ma_x];
+    int salary;
+    float weight;
+};
+int main(){
+    Assistant ast;
+}
