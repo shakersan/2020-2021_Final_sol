@@ -1,0 +1,37 @@
+// answer using bitmasks
+#include<iostream>
+#include <bitset>
+#include<windows.h>
+using namespace std;
+int main(){
+    int x;  int y;
+    while(true){
+        x = 0x0;
+        cout << bitset<10>(x) <<endl;
+        Sleep(10000);
+        y = 0x201;
+        x |= y;
+        cout << bitset<10>(x) <<endl;
+        Sleep(10000);
+        x = 0x0;
+        y = 0x102;
+        x |= y;
+        cout << bitset<10>(x) <<endl;
+        Sleep(10000);
+        x = 0x0;
+        y = 0x084;
+        x |= y;
+        cout << bitset<10>(x) <<endl;
+        Sleep(10000);
+        x = 0x0;
+        y = 0x048;
+        x |= y;
+        cout << bitset<10>(x) <<endl;
+        Sleep(10000);
+        x = 0x0;
+        y = 0x030;
+        x |= y;
+        cout << bitset<10>(x) <<endl;
+        Sleep(10000);
+    }
+}
