@@ -1,4 +1,4 @@
-// sol using shifting
+// answer using shifting
 #include<iostream>
 #include <bitset>
 #include<windows.h>
