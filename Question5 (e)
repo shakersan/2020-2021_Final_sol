@@ -1,0 +1,158 @@
+#define ma_x    100
+#include<iostream>
+using namespace std;
+class Engineer{
+private:
+    int id;
+    char name[ma_x];
+    char phone[ma_x];
+    int salary;
+    char specialization[ma_x];
+public:
+    void set_data (){
+        cout << "Enter id: ";
+        cin >> id;
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter phone: ";
+        cin >> phone;
+        cout << "Enter salary: ";
+        cin >> salary;
+        cout << "Enter specialization: ";
+        cin >> specialization;
+    }
+    void display_data(){
+        cout << "Id: " << id << endl;
+        cout << "Name: " << name << endl;
+        cout << "Phone: "<< phone << endl;
+        cout << "Salary: "<< salary << endl;
+        cout << "Specialization: "<< specialization << endl;
+    }
+    int get_salary(){
+        return salary;
+    }// I will use it to calculate the average salary later
+};
+class Assistant{
+private:
+    int id;
+    char name[ma_x];
+    char address[ma_x];
+    int salary;
+    float weight;
+public:
+    void set_data (){
+        cout << "Enter id: ";
+        cin >> id;
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter address: ";
+        cin >> address;
+        cout << "Enter salary: ";
+        cin >> salary;
+        cout << "Enter weight: ";
+        cin >> weight;
+    }
+    void display_data() {
+        cout << "Id: " << id << endl;
+        cout << "Name: " << name << endl;
+        cout << "Address: " << address << endl;
+        cout << "Salary: " << salary << endl;
+        cout << "Weight: " << weight << endl;
+    }
+};
+class Employee{
+public:
+    int flag;
+    // here we can use multiple inheritance instead of
+    // union, but there is an error of "default constructor"
+    // ,so I didn't use any constructor, and preferred union.
+    union {
+        Engineer e;
+        Assistant a;
+    } Person;
+};
+class Linkedlist{
+private:
+    struct Node{
+        Employee data;
+        Node* next;
+    };
+    Node* newnode;
+    Node* head;
+public:
+    void reset(){
+        head = nullptr;
+    }
+    bool is_empty(){
+        return (head == nullptr);
+    }// nullptr is NULL, but I use old version of c++.
+    void insert(Employee emp){
+        newnode = new Node;
+        newnode->data = emp;
+        if (is_empty()){
+            head = newnode;
+            newnode->next = nullptr;
+        }else{
+            Node* temp = head;
+            while (temp->next != nullptr){
+                temp = temp->next;
+            }
+            temp->next = newnode;
+            newnode->next = nullptr;
+        }
+    }
+};
+int main(){
+    int f; int num;
+    int sumengineer = 0;
+    int sumsalary = 0;
+    cout << "Enter number of Persons you want to insert : ";
+    cin >> num;
+    int num1 = num;
+    int tnum = num;
+    Linkedlist ls;
+    ls.reset();
+    Employee e[num];
+    while (num--){
+        here:
+        cout << "Enter your choice : \n";
+        cout << "0 for Engineer or 1 for Assistant : ";
+        cin >> f;
+        e[num].flag = f;
+        switch (f) {
+            case 0:
+                Engineer eng;
+                eng.set_data();
+                e[num].Person.e = eng;
+                ls.insert(e[num]);
+                sumengineer++;
+                break;
+            case 1:
+                Assistant ast;
+                ast.set_data();
+                e[num].Person.a = ast;
+                ls.insert(e[num]);
+                break;
+            default:
+                cout << "Invalid!";
+                goto here;
+        }
+    }
+    cout << "-------------------------------\n";
+    cout << "The entered data are: "<<endl;
+    cout << "-------------------------------\n";
+    while (num1--){
+        if (e[num1].flag == 0){
+            cout << "Engineer data : "<<endl;
+            e[num1].Person.e.display_data();
+            sumsalary += e[num1].Person.e.get_salary();
+        }else{
+            cout << "Assistant data : "<<endl;
+            e[num1].Person.a.display_data();
+        }
+        cout << "-------------------------------\n";
+    }
+    cout << "The total numbers of Employees = " << tnum << endl;
+    cout << "The average salary of Engineers = " << sumsalary/sumengineer << endl;
+    return 0;
+}
