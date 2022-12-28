@@ -1,3 +1,4 @@
+// implementation using array
 #include<iostream>
 using namespace std;
 class queue{
