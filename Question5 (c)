@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+class Engineer{
+private:
+#define ma_x    100
+    int id;
+    char name[ma_x];
+    char phone[ma_x];
+    int salary;
+    char specialization[ma_x];
+public:
+    // I will use them in the function "check_id"
+    void set_id(int id){
+        this->id = id;
+    }
+    int get_id(){
+        return id;
+    }
+};
+class Stack{
+private:
+#define ma_x    100
+    Engineer elements[ma_x];
+    int top;
+public:
+    void reset(){
+        top = 0;
+    }
+    bool is_full(){
+        return (top == ma_x);
+    }
+    void push(Engineer eng){
+        if (!is_full()) {
+            elements[++top] = eng;
+        }
+    }
+    Engineer pop(){
+        return (elements[top--]);
+    }
+    bool check_id(int id){
+        int temp = top;
+        while (temp != 0){
+            if (elements[temp].get_id() == id){
+                return true;
+            }
+            --temp;
+        }
+        return false;
+    }
+};
+int main() {
+    Engineer eng1, eng2, eng3;
+    Stack stk;
+    eng1.set_id(10);
+    eng2.set_id(11);
+    eng3.set_id(12);
+    stk.reset();
+    stk.push(eng1);
+    stk.push(eng2);
+    stk.push(eng3);
+    if (stk.check_id(12)) {
+        cout << "Yes";
+    } else {
+        cout << "No";
+    }
+}
