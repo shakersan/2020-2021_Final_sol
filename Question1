@@ -1,0 +1,15 @@
+/*
+(a)
+Encapsulation : It is a one of OOP characteristics that helps in data hiding, and it used to prevent direct access to data.
+Data hiding : It is an OOP technique specifically used to hide internal object details (i.e., data members).
+(b)
+Function : It is a group of statements that together perform a specific task.
+Operator overloading : Overload on predefined operators (+, - ,<< , ... etc) to give it a different meaning.
+(c)
+Member function : It is a function that has its definition or its prototype within the class definition, and it access the private member elements.
+Friend function : It is a function that is given the same access as the member functions to the private and protected data, but it is not a member one.
+(d)
+Constructor: It is a function belongs to the class, and it is called automatically when the object of the class has been declared, and it has the same name of the object.
+Destructor: It is a function belongs to the class, and it is called automatically when the object of the class has been released, and it has the same name of the object
+             but it proceeded by ~.
+*/
