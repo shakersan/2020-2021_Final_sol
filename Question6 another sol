@@ -1,0 +1,89 @@
+// implementation using linkedlist
+#include <iostream>
+using namespace std;
+class queue{
+private:
+    struct Node{
+        int data;
+        Node* next;
+    };
+    Node* front = NULL;
+    Node* rear = NULL;
+    Node* newnode;
+public:
+    bool is_empty(){
+        return (front == NULL && rear == NULL);
+    }
+    void push (int element){
+        newnode = new Node;
+        newnode->data= element;
+        newnode->next = NULL;
+        if (front == NULL)
+        {
+            front = rear = newnode;
+        }else
+        {
+            rear->next = newnode;
+            rear = newnode;
+        }
+    }
+    void pop (){
+        if(is_empty())
+            cout<<"Queue is empty cannot pop anything\n";
+        else
+        if(front == rear)
+        {
+            delete front;
+            front = rear = NULL;
+        }
+        else
+        {
+            newnode = front;
+            front = front->next;
+            delete newnode;
+        }
+    }
+    bool is_exist (int element){
+        Node *temp = front;
+        while( temp != NULL)
+        {
+            if (temp->data == element)
+            {
+                return true;
+            }
+            temp = temp->next;
+        }
+    }
+    void clear(){
+        front = rear = NULL;
+    }
+    void display()
+    {
+        if (is_empty())
+            cout<<"Queue is empty cannot display anything\n";
+        else
+        {
+            Node *temp = front;
+            while( temp != NULL)
+            {
+                cout<< temp->data <<" ";
+                temp = temp->next;
+            }
+        }
+        cout << endl;
+    }
+};
+int main(){
+    queue q;
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    q.display();
+    cout << q.is_exist(1) << endl;
+    q.pop();
+    q.display();
+    cout << q.is_exist(1) << endl;
+    q.clear();
+    q.display();
+    return 0;
+}
