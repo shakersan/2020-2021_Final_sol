@@ -1,4 +1,4 @@
-// answer using bitmasks
+// answer using masking
 #include<iostream>
 #include <bitset>
 #include<windows.h>
