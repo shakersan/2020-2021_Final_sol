@@ -1,30 +1,36 @@
 // implementation using linkedlist
+#define ma_x    100
 #include <iostream>
 using namespace std;
 class queue{
 private:
     struct Node{
-        int data;
+        long data;
         Node* next;
     };
     Node* front = NULL;
     Node* rear = NULL;
     Node* newnode;
+    int size = 0;
 public:
     bool is_empty(){
         return (front == NULL && rear == NULL);
     }
-    void push (int element){
-        newnode = new Node;
-        newnode->data= element;
-        newnode->next = NULL;
-        if (front == NULL)
-        {
-            front = rear = newnode;
-        }else
-        {
-            rear->next = newnode;
-            rear = newnode;
+    void push (int element) {
+        if (size < ma_x) {
+            newnode = new Node;
+            newnode->data = element;
+            newnode->next = NULL;
+            if (front == NULL) {
+                front = rear = newnode;
+                size++;
+            } else {
+                rear->next = newnode;
+                rear = newnode;
+                size++;
+            }
+        }else {
+            cout << "Overload! \n";
         }
     }
     void pop (){
@@ -34,6 +40,7 @@ public:
         if(front == rear)
         {
             delete front;
+            --size;
             front = rear = NULL;
         }
         else
@@ -41,11 +48,12 @@ public:
             newnode = front;
             front = front->next;
             delete newnode;
+            --size;
         }
     }
     bool is_exist (int element){
         Node *temp = front;
-        while( temp != NULL)
+        while(temp != NULL)
         {
             if (temp->data == element)
             {
@@ -55,7 +63,19 @@ public:
         }
     }
     void clear(){
-        front = rear = NULL;
+        if (is_empty()){
+            return;
+        }else{
+            Node *current = front;
+            Node *temp = NULL;
+            while(current != NULL){
+                temp = current->next;
+                delete current;
+                current = temp;
+            }
+            front = rear = NULL;
+            size = 0;
+        }
     }
     void display()
     {
@@ -64,7 +84,7 @@ public:
         else
         {
             Node *temp = front;
-            while( temp != NULL)
+            while(temp != NULL)
             {
                 cout<< temp->data <<" ";
                 temp = temp->next;
