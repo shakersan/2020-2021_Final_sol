@@ -4,7 +4,7 @@ using namespace std;
 class queue{
 private:
 #define n   100
-    int data[n];
+    long data[n];
     int front = -1;
     int rear = -1;
 public:
